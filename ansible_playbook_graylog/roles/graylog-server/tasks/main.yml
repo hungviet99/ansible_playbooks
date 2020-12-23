@@ -41,7 +41,7 @@
 - replace:
     path: /etc/graylog/server/server.conf
     regexp: '#root_username = admin'
-    replace: 'root_username = {{ timezone_for_root }}'
+    replace: 'root_username = admin'
     backup: yes
 
 - replace:
