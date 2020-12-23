@@ -1,0 +1,17 @@
+---
+- hosts: graylogsrv
+  become: yes
+  remote_user: root
+  vars:
+    ip_ntp_server:
+    graylog_version: '4.0'
+    pass_login_graylog: 
+    timezone_for_root: 'Asia/Ho_Chi_Minh'
+    http_bind_address: '0.0.0.0'
+    http_publish_uri: '0.0.0.0'
+    mongodb_version: '4.2'
+  roles:
+    - {role: setup_env, tags: ['setup_env']}
+    - {role: elastic_install, tags: ['elastic_install']}
+    - {role: mongodb_install, tags: ['mongodb_install']}
+    - {role: graylog-server, tags: ['graylog-server']}

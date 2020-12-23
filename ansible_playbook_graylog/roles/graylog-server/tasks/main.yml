@@ -1,0 +1,57 @@
+---
+# tasks file for graylog-server
+- name: "Repositories should be updated"
+  yum:
+    name: "{{ graylog_yum_rpm_url }}"
+    state: "present"
+    update_cache: True
+    disable_gpg_check: True
+
+- name: update sys
+  yum:
+    name: '*'
+    state: latest
+
+- name: Install graylog-server
+  yum:
+    name: "{{ graylog_packages }}"
+    state: "present"
+
+- name: Backup file config
+  shell: cp /etc/graylog/server/server.conf /etc/graylog/server/server.conf.bk
+
+- name: config password secret
+  shell: pass_secret=$(pwgen -N 1 -s 96) && sed -i -e 's|password_secret =|password_secret = '$pass_secret'|' /etc/graylog/server/server.conf
+
+- name: config password login
+  shell: pass_sha=$(echo -n {{ pass_login_graylog }} | sha256sum | awk '{print $1}') && sed -i -e 's|root_password_sha2 =|root_password_sha2 = '$pass_sha'|' /etc/graylog/server/server.conf
+
+- replace:
+    path: /etc/graylog/server/server.conf
+    regexp: '#root_timezone = UTC'
+    replace: 'root_timezone = {{ timezone_for_root }}'
+    backup: yes
+
+- replace:
+    path: /etc/graylog/server/server.conf
+    regexp: '#http_bind_address = 127.0.0.1:9000'
+    replace: 'http_bind_address = {{ http_bind_address }}:9000'
+    backup: yes
+
+- replace:
+    path: /etc/graylog/server/server.conf
+    regexp: '#root_username = admin'
+    replace: 'root_username = {{ timezone_for_root }}'
+    backup: yes
+
+- replace:
+    path: /etc/graylog/server/server.conf
+    regexp: '#http_publish_uri = http://192.168.1.1:9000/'
+    replace: 'http_publish_uri = http://{{ http_publish_uri }}:9000/'
+    backup: yes
+
+- name: Restart graylog
+  service:
+    name: "{{ graylog_service }}"
+    enabled: true
+    state: started

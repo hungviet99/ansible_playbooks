@@ -1,0 +1,25 @@
+---
+# tasks file for elastic_install
+- name: Import a key from a url
+  rpm_key:
+    state: present
+    key: http://packages.elastic.co/GPG-KEY-elasticsearch
+
+- name: add repo elasticsearch 
+  template:
+    src: repo-elastic.j2
+    dest: /etc/yum.repos.d/elasticsearch.repo
+
+- name: Install elasticsearch 
+  yum: 
+    name: "{{ package_elastic}}"
+    state: present
+
+- name: Config elasticsearch
+  shell: "sed -i 's/#cluster.name: my-application/cluster.name: graylog/g' /etc/elasticsearch/elasticsearch.yml"
+
+- name: Restart elasticsearch
+  service:
+    name: "{{ package_elastic }}"
+    enabled: true
+    state: started

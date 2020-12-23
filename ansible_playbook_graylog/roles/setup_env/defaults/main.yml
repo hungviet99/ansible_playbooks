@@ -1,0 +1,15 @@
+---
+# defaults file for setup_env
+apache_package: httpd
+packages_slt:
+  - git 
+  - wget
+  - curl
+  - byobu
+  - pwgen
+elpel_release_package:
+  - epel-release
+chrony_package: chrony
+ntp_name_service: chronyd
+java_package: java-1.8.0-openjdk
+#ip_ntp_server: "1.vn.pool.ntp.org"

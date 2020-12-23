@@ -1,0 +1,4 @@
+---
+# defaults file for elastic_install
+package_elastic: elasticsearch
+

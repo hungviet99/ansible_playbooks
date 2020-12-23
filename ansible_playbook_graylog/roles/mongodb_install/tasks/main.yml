@@ -1,0 +1,17 @@
+---
+# tasks file for mongodb_install
+- name: add repo mongodb
+  template:
+    src: repo-mongodb.j2
+    dest: /etc/yum.repos.d/mongodb-org-{{ mongodb_version }}.repo
+
+- name: Install mongodb
+  yum: 
+    name: "{{ mongodb_package }}"
+    state: present
+
+- name: Restart mongodb
+  service:
+    name: "{{ mongodb_service }}"
+    enabled: true
+    state: started
