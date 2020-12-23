@@ -185,7 +185,7 @@ Khi `failed` = 0 tức là không có lỗi xảy ra trong quá trình cài đ�
 
 ### 6. Kết thúc cài đặt 
 
-Mở trình duyệt web của bạn và điều hướng đến http://http://ip_graylog_server:9000 để truy cập graylog web interface. 
+Mở trình duyệt web của bạn và điều hướng đến http://ip_graylog_server:9000 để truy cập graylog web interface. 
 
 Author Information
 ------------------
