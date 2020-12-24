@@ -65,7 +65,7 @@ git clone https://github.com/hungviet99/ansible_playbooks.git
 ### 2. Truy cập vào thư mục playbook
 
 ```
-/root/ansible_playbooks/ansible_playbook_graylog
+cd /root/ansible_playbooks/ansible_playbook_graylog
 ```
 ### 3. Cấu hình file inventory
 
@@ -75,7 +75,7 @@ Ví dụ như sau:
 
 ```
 [graylogsrv]
-host1 ansible_host=10.10.10.10 ansible_port=22 ansible_user=root ansible_ssh_pass=password
+host1 ansible_host=10.10.10.10 ansible_port =22 ansible_user=root ansible_ssh_pass=password
 ```
 
 trong đó: 
