@@ -1,0 +1,11 @@
+---
+- hosts: elksrv
+  become: yes
+  remote_user: root
+  vars:
+    ip_ntp_server: ''
+  roles: 
+    - {role: setup_env, tags: ['setup_env']}
+    - {role: elastic_install, tags: ['elastic_install']}
+    - {role: logstash_install, tags: ['logstash_install']}
+    - {role: kibana_install, tags: ['kibana_install']}

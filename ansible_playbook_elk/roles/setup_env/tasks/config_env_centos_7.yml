@@ -1,0 +1,25 @@
+---
+#tasks file for setup_env
+- name: install elpel-release
+  yum:
+    name: "{{ elpel_release_package }}"
+    state: present
+
+- name: update system
+  yum:
+    name: '*'
+    state: latest
+
+- name : install packages supplementary
+  yum:
+    name: "{{ packages_slt_centos }}"
+    state: present
+
+- name: install java
+  yum:
+    name: "{{ java_package_centos }}"
+    state: present
+
+- include_tasks: setup_ntp.yml
+
+- include_tasks: config_selinux.yml

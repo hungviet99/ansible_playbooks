@@ -1,0 +1,11 @@
+---
+# kibana install centos
+- name: add repo kibana
+  template:
+    src: repo-kibana.j2
+    dest: /etc/yum.repos.d/kibana.repo
+
+- name: Install kibana 
+  yum: 
+    name: "{{ package_kibana }}"
+    state: present

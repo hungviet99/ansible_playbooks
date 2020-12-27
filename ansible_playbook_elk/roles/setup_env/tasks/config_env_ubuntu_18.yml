@@ -1,0 +1,21 @@
+---
+- name: Update and upgrade apt packages
+  apt:
+    upgrade: yes
+    update_cache: yes
+
+- name: install java
+  apt:
+    name: "{{ java_package_ubuntu }}"
+    state: present
+
+- name : install packages supplementary
+  apt:
+    name: "{{ packages_slt_ubuntu }}"
+    state: present
+
+- name: install web server
+  apt:
+    name: "{{ webserver_package }}"
+    state: present
+

@@ -1,0 +1,21 @@
+---
+- name: Import a key from a url
+  rpm_key:
+    state: present
+    key: http://packages.elastic.co/GPG-KEY-elasticsearch
+
+- name: add repo elasticsearch 
+  template:
+    src: repo-elastic.j2
+    dest: /etc/yum.repos.d/elasticsearch.repo
+
+- name: Install elasticsearch 
+  yum: 
+    name: "{{ package_elastic}}"
+    state: present
+
+- name: Updating the config file to allow outside access
+  lineinfile:
+   destfile: /etc/elasticsearch/elasticsearch.yml
+   regexp: 'network.host:'
+   line: 'network.host: localhost'

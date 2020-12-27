@@ -1,0 +1,7 @@
+---
+# kibana install ubuntu
+- name: Install kibana 
+  apt: 
+    name: "{{ package_kibana }}"
+    state: present
+
