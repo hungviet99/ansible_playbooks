@@ -1,9 +1,9 @@
 ---
 # tasks file for logstash_install
-- include_tasks: install_logtash_centos_7.yml
+- include_tasks: install_logstash_centos_7.yml
   when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
 
-- include_tasks: install_logtash_ubuntu_18.yml
+- include_tasks: install_logstash_ubuntu_18.yml
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 
 - name: Restart logstash
