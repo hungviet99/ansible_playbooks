@@ -72,11 +72,13 @@ roles
 cd
 git clone https://github.com/hungviet99/ansible_playbooks.git
 ```
+
 ### 2. Truy cập vào thư mục playbook
 
 ```
 cd /root/ansible_playbooks/ansible_playbook_elk
 ```
+
 ### 3. Cấu hình file inventory
 
 Thêm vào các máy chủ được quản lý trong file `hosts`. 
@@ -109,6 +111,9 @@ Ban đầu ta sẽ có 1 file playbook như sau:
   remote_user: root
   vars:
     ip_ntp_server: ''
+    elastic_version: '7.x'
+    logstash_version: '6.x'
+    kibana_version: '6.x'
   roles: 
     - {role: setup_env, tags: ['setup_env']}
     - {role: elastic_install, tags: ['elastic_install']}
@@ -125,6 +130,9 @@ Có thể sửa remote user `root` thành các user có quyền truy cập vào 
 - Sửa thông tin biến các biến `vars`: 
 
     - Biến để đặt địa chỉ của máy chủ ntp trong mạng của bạn : `ip_ntp_server`
+    - Biến chỉ định version cho elasticsearch (version mặc định là 7.x): `elastic_version`
+    - Biến chỉ định version cho logstash (version mặc định là 6.x): `logstash_version`
+    - Biến chỉ định version cho kibana (version mặc định là 6.x): `kibana_version`
 
 ### 5. Chạy playbook
 
@@ -139,33 +147,45 @@ ansible-playbook -i hosts playbook-elk.yml
 Ta sẽ nhận được đầu ra tương tự như sau: 
 
 ```
-PLAY [elksrv] ******************************************************************************************************************************************************
+PLAY [elksrv] ****************************************************************************************************************************************************************************
 
-TASK [Gathering Facts] *********************************************************************************************************************************************
+TASK [Gathering Facts] *******************************************************************************************************************************************************************
 ok: [host1]
 
-TASK [./roles/setup_env : include_tasks] ***************************************************************************************************************************
-included: /etc/ansible/roles/ansible_playbook_elk/roles/setup_env/tasks/config_env_ubuntu_18.yml for host1
+TASK [setup_env : include_tasks] *********************************************************************************************************************************************************
+included: /root/ansible_playbooks/ansible_playbook_elk/roles/setup_env/tasks/config_env_centos_7.yml for host1
 
-TASK [./roles/setup_env : install java] ****************************************************************************************************************************
+TASK [setup_env : install elpel-release] *************************************************************************************************************************************************
+ok: [host1]
+
+...
+
+TASK [logstash_install : add repo logtash] ***********************************************************************************************************************************************
+changed: [host1]
+
+TASK [logstash_install : Install logstash] ***********************************************************************************************************************************************
+changed: [host1]
+
+TASK [logstash_install : Restart logstash] ***********************************************************************************************************************************************
 changed: [host1]
 
 ...
 
-TASK [./roles/kibana_install : Install kibana] *********************************************************************************************************************
+TASK [kibana_install : Install kibana] ***************************************************************************************************************************************************
 changed: [host1]
 
-TASK [./roles/kibana_install : Restart kibana] *********************************************************************************************************************
+TASK [kibana_install : Restart kibana] ***************************************************************************************************************************************************
 changed: [host1]
 
-PLAY RECAP *********************************************************************************************************************************************************
+PLAY RECAP *******************************************************************************************************************************************************************************
 host1         : ok=27   changed=19   unreachable=0    failed=0    skipped=4    rescued=0    ignored=0
+
 ```
 Khi `failed` = 0 tức là không có lỗi xảy ra trong quá trình cài đặt. Quá trình chạy playbook hoàn tất !
 
 ### 6. Kết thúc cài đặt 
 
-Mở trình duyệt web của bạn và điều hướng đến http://ip_elk_server:9000 để truy cập elk web interface. 
+Mở trình duyệt web của bạn và điều hướng đến http://ip_elk_server:9000 để truy cập kibana trên trình duyệt.  
 
 Author Information
 ------------------
