@@ -46,8 +46,8 @@ roles
 │   ├── defaults
 │   │   └── main.yml
 │   ├── tasks
-│   │   ├── install_logtash_centos_7.yml
-│   │   ├── install_logtash_ubuntu_18.yml
+│   │   ├── install_logstash_centos_7.yml
+│   │   ├── install_logstash_ubuntu_18.yml
 │   │   └── main.yml
 │   └── templates
 │       └── repo-logstash.j2
