@@ -6,7 +6,7 @@
 
 - name: Adding Elasticsearch repo
   apt_repository:
-   repo: deb https://artifacts.elastic.co/packages/7.x/apt stable main
+   repo: deb https://artifacts.elastic.co/packages/{{ elastic_version }}/apt stable main
    state: present
 
 - name: Install Elasticsearch

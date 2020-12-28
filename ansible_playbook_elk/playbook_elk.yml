@@ -4,6 +4,9 @@
   remote_user: root
   vars:
     ip_ntp_server: ''
+    elastic_version: '7.x'
+    logstash_version: '6.x'
+    kibana_version: '6.x'
   roles: 
     - {role: setup_env, tags: ['setup_env']}
     - {role: elastic_install, tags: ['elastic_install']}
