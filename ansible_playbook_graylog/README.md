@@ -112,7 +112,7 @@ Ban đầu ta sẽ có 1 file playbook như sau:
     - {role: graylog-server, tags: ['graylog-server']}
 ```
 
-Sử dụng `vi` hoặc `vim` để truy cập file trên với đường dẫn `/root/ansible_playbooks/ansible_playbook_graylog/playbook-graylog.yml` và sửa 1 số thông tin sau:
+Sử dụng `vi` hoặc `vim` để truy cập file  `playbook-graylog.yml` và sửa 1 số thông tin sau:
 
 - Sửa thông tin remote user:
 
