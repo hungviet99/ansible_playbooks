@@ -2,7 +2,7 @@
 
 Playbook sử dụng để cài đặt graylog-server và graylog-sidecar trên CentOS 7
 
-Playbook sẽ thực hiện các tác vụ trên máy chủ được quản lý như: 
+Playbook sẽ thực hiện các tác vụ trên máy chủ được quản lý như:
 
 **Graylog-server:**
 
@@ -21,7 +21,7 @@ Playbook sẽ thực hiện các tác vụ trên máy chủ được quản lý 
 | Role | Description |
 |-------|------------|
 | setup_env | Cấu hình môi trường cần thiết trước khi bắt đầu cài đặt graylog-server |
-| elastic_install | Cài đặt và cấu hình Elasticsearch | 
+| elastic_install | Cài đặt và cấu hình Elasticsearch |
 | mongodb_install | Cài đặt MongoDB |
 | graylog-server | Cài đặt và cấu hình các bước cần thiết để chạy graylog-server |
 | sidecar_install | Cài đặt và cấu hình graylog-sidecar đẩy log về graylog-server |
