@@ -73,18 +73,18 @@ roles
 
 ## 1. Cấu hình ban đầu
 
-### 1.1 Clone repository
+### 1.1. Clone repository
 
 ```
 cd
 git clone https://github.com/hungviet99/ansible_playbooks.git
 ```
-### 1.2 Truy cập vào thư mục playbook
+### 1.2. Truy cập vào thư mục playbook
 
 ```
 cd /root/ansible_playbooks/ansible_playbook_graylog
 ```
-### 1.3 Cấu hình file inventory
+### 1.3. Cấu hình file inventory
 
 Thêm vào các máy chủ được quản lý trong file `hosts`. 
 
@@ -206,7 +206,7 @@ graylogsrv                     : ok=31   changed=26   unreachable=0    failed=0 
 ```
 Khi `failed` = 0 tức là không có lỗi xảy ra trong quá trình cài đặt. Quá trình chạy playbook hoàn tất !
 
-### 2.3 Kết thúc cài đặt 
+### 2.3. Kết thúc cài đặt 
 
 Mở trình duyệt web của bạn và điều hướng đến http://ip_graylog_server:9000 để truy cập graylog web interface. 
 
@@ -293,7 +293,7 @@ client1                    : ok=22   changed=17   unreachable=0    failed=0    s
 ```
 Khi `failed` = 0 tức là không có lỗi xảy ra trong quá trình cài đặt. Quá trình chạy playbook hoàn tất !
 
-### 3.3 Kết thúc cài đặt 
+### 3.3. Kết thúc cài đặt 
 
 Truy cập web interface của graylog-server để hoàn tất các bước cấu hình. Bạn có thể tham khảo các bước lấy `api token` và cấu hình cho graylog sidecar trên web interface [tại đây!](https://github.com/hungviet99/ghichep-Graylog/blob/master/docs/2.Config_graylog_sidecar_in_CentOS7.md)
 
