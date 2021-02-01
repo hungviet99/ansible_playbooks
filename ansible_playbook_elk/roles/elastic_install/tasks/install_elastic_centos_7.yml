@@ -1,8 +1,8 @@
 ---
 - name: Import a key from a url
-  rpm_key:
-    state: present
-    key: http://packages.elastic.co/GPG-KEY-elasticsearch
+  shell: '{{item}}'
+  with_items:
+   - "rpm --import http://packages.elastic.co/GPG-KEY-elasticsearch"
 
 - name: add repo elasticsearch 
   template:

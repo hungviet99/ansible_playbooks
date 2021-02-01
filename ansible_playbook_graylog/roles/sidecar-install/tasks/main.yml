@@ -1,0 +1,5 @@
+---
+# tasks file for sidecar-install
+- include_tasks: setup_env.yml
+
+- include_tasks: install_sidecar_centos7.yml

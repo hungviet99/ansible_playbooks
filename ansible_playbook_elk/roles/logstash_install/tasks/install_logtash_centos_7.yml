@@ -1,6 +1,6 @@
 ---
 # logstash install centos
-- name: add repo logstash
+- name: add repo logtash
   template:
     src: repo-logstash.j2
     dest: /etc/yum.repos.d/logstash.repo

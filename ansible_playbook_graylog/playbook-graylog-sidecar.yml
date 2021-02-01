@@ -1,0 +1,11 @@
+---
+- hosts: sidecar
+  become: yes
+  remote_user: root
+  vars:
+    ip_ntp_server:
+    ip_graylog_server:
+    api_token:
+    name_server: "{{ inventory_hostname }}"
+  roles:
+    - {role: sidecar-install, tags: ['sidecar-install']}
