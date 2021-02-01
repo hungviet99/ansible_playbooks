@@ -92,7 +92,7 @@ Ví dụ như sau:
 
 ```
 [graylogsrv]
-graylog-server ansible_host=10.10.10.10 ansible_port =22 ansible_user=root ansible_ssh_pass=password
+graylogsrv ansible_host=10.10.10.10 ansible_port =22 ansible_user=root ansible_ssh_pass=password
 [sidecar]
 client1 ansible_host=10.10.10.11 ansible_port=22 ansible_user=root ansible_ssh_pass=password
 ```
@@ -167,42 +167,42 @@ Ta sẽ nhận được đầu ra tương tự như sau:
 PLAY [graylogsrv] ************************************************************************************************************************************************************************
 
 TASK [Gathering Facts] *******************************************************************************************************************************************************************
-ok: [host1]
+ok: [graylog-srv]
 
 TASK [setup_env : install elpel-release] *************************************************************************************************************************************************
-changed: [host1]
+changed: [graylogsrv]
 
 TASK [setup_env : update system] *********************************************************************************************************************************************************
-changed: [host1]
+changed: [graylogsrv]
 
 ...
 
 TASK [mongodb_install : Install mongodb] *************************************************************************************************************************************************
-changed: [host1]
+changed: [graylogsrv]
 
 TASK [mongodb_install : Restart mongodb] *************************************************************************************************************************************************
-changed: [host1]
+changed: [graylogsrv]
 
 TASK [graylog-server : Repositories should be updated] ***********************************************************************************************************************************
-changed: [host1]
+changed: [graylogsrv]
 
 TASK [graylog-server : update sys] *******************************************************************************************************************************************************
-ok: [host1]
+ok: [graylogsrv]
 
 TASK [Install graylog-server] ************************************************************************************************************************************************************
-changed: [host1]
+changed: [graylogsrv]
 
 
 ...
 
 TASK [graylog-server : replace] **********************************************************************************************************************************************************
-changed: [host1]
+changed: [graylogsrv]
 
 TASK [graylog-server : Restart graylog] **************************************************************************************************************************************************
-changed: [host1]
+changed: [graylogsrv]
 
 PLAY RECAP *******************************************************************************************************************************************************************************
-host1                      : ok=31   changed=26   unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+graylogsrv                     : ok=31   changed=26   unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 ```
 Khi `failed` = 0 tức là không có lỗi xảy ra trong quá trình cài đặt. Quá trình chạy playbook hoàn tất !
 
@@ -244,8 +244,58 @@ Có thể sửa remote user `root` thành các user có quyền truy cập vào 
 
 ### 3.2. Chạy playbook 
 
+Sau khi cấu hình các cài đặt cần thiết, bạn có thể chạy playbook như sau :
 
+```
+cd /root/ansible_playbooks/ansible_playbook_graylog
 
+ansible-playbook -i hosts playbook-graylog-sidecar.yml
+```
+
+Ta sẽ nhận được đầu ra tương tự như sau: 
+
+```
+PLAY [sidecar] ***************************************************************************************************************************************************************************
+
+TASK [Gathering Facts] *******************************************************************************************************************************************************************
+ok: [client1]
+
+TASK [sidecar-install : include_tasks] ***************************************************************************************************************************************************
+included: /root/ansible_playbooks/ansible_playbook_graylog/roles/sidecar-install/tasks/setup_env.yml for client1
+
+TASK [sidecar-install : install elpel-release] *******************************************************************************************************************************************
+changed: [client1]
+
+...
+
+TASK [sidecar-install : update system] ***************************************************************************************************************************************************
+ok: [client1]
+
+TASK [sidecar-install : Install graylog-sidecar] *****************************************************************************************************************************************
+changed: [client1]
+
+TASK [sidecar-install : copy] ************************************************************************************************************************************************************
+changed: [client1]
+
+TASK [sidecar-install : replace] *********************************************************************************************************************************************************
+changed: [client1]
+
+TASK [sidecar-install : replace] *********************************************************************************************************************************************************
+changed: [client1]
+
+...
+
+TASK [sidecar-install : restart graylog-sidecar] *****************************************************************************************************************************************
+changed: [client1]
+
+PLAY RECAP *******************************************************************************************************************************************************************************
+client1                    : ok=22   changed=17   unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+```
+Khi `failed` = 0 tức là không có lỗi xảy ra trong quá trình cài đặt. Quá trình chạy playbook hoàn tất !
+
+### 3.3 Kết thúc cài đặt 
+
+Truy cập web interface của graylog-server để hoàn tất các bước cấu hình. Bạn có thể tham khảo các bước lấy `api token` và cấu hình cho graylog sidecar trên web interface [tại đây!](https://github.com/hungviet99/ghichep-Graylog/blob/master/docs/2.Config_graylog_sidecar_in_CentOS7.md)
 
 Author Information
 ------------------
