@@ -1,3 +1,0 @@
----
-# defaults file for logstash_install
-package_logstash: logstash

@@ -1,4 +1,0 @@
-[graylogsrv]
-host1 ansible_host= ansible_port= ansible_user= ansible_ssh_pass=
-[sidecar]
-client1 ansible_host= ansible_port= ansible_user= ansible_ssh_pass=

@@ -1,9 +1,0 @@
----
-# defaults file for graylog-server
-graylog_yum_rpm_url: https://packages.graylog2.org/repo/packages/graylog-{{ graylog_version }}-repository_latest.rpm
-graylog_packages:
-  - graylog-server
-  - graylog-enterprise-plugins
-  - graylog-integrations-plugins
-  - graylog-enterprise-integrations-plugins
-graylog_service: graylog-server

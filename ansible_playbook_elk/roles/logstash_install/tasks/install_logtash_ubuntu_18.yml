@@ -1,6 +1,0 @@
----
-# logstash install ubuntu 
-- name: Install logstash 
-  apt: 
-    name: "{{ package_logstash }}"
-    state: present

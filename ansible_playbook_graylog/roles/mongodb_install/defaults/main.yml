@@ -1,4 +1,0 @@
----
-# defaults file for mongodb_install
-mongodb_package: mongodb-org
-mongodb_service: mongod
