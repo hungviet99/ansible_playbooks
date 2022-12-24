@@ -43,16 +43,6 @@ setup.template.settings:
 #setup.dashboards.url:
 
 #============================== Kibana =====================================
-# setup.kibana:
-# {% if apache_reverse_proxy|bool %}
-#   host: "{{elk_server}}:{{www_kibana_port}}/kibana"
-# {% else %}
-#   host: "{{elk_server}}:{{www_kibana_port}}"
-# {% endif %}
-#   protocol: "http"
-#   username: "{{kibana_user}}"
-#   password: "{{kibana_password}}"
-  #space.id:
 
 
 #-------------------------- Elasticsearch output ------------------------------
