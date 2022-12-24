@@ -1,0 +1,86 @@
+###################### Filebeat Configuration Example #########################
+#=========================== Filebeat inputs =============================
+
+filebeat.inputs:
+- type: log
+  enabled: true
+  paths:
+    - /var/log/secure
+  #exclude_lines: ['^DBG']
+  #include_lines: ['^ERR', '^WARN']
+  #exclude_files: ['.gz$']
+  fields:
+    level: debug
+  #  review: 1
+  #multiline.pattern: ^\[
+  #multiline.negate: false
+  #multiline.match: after
+
+#============================= Filebeat modules ===============================
+
+filebeat.config.modules:
+  path: ${path.config}/modules.d/*.yml
+  reload.enabled: false
+  #reload.period: 10s
+
+#==================== Elasticsearch template setting ==========================
+
+setup.template.settings:
+  index.number_of_shards: 3
+  #index.codec: best_compression
+  #_source.enabled: false
+
+#================================ General =====================================
+#name:
+#tags: ["service-X", "web-tier"]
+#fields:
+#  env: staging
+
+#============================== Dashboards =====================================
+#setup.dashboards.enabled: false
+# setup.dashboards.enabled: true
+# setup.dashboards.beat:
+#setup.dashboards.url:
+
+#============================== Kibana =====================================
+# setup.kibana:
+# {% if apache_reverse_proxy|bool %}
+#   host: "{{elk_server}}:{{www_kibana_port}}/kibana"
+# {% else %}
+#   host: "{{elk_server}}:{{www_kibana_port}}"
+# {% endif %}
+#   protocol: "http"
+#   username: "{{kibana_user}}"
+#   password: "{{kibana_password}}"
+  #space.id:
+
+
+#-------------------------- Elasticsearch output ------------------------------
+#output.elasticsearch:
+  # Array of hosts to connect to.
+#  hosts: ["localhost:9200"]
+  # Optional protocol and basic auth credentials.
+  #protocol: "https"
+  #username: "elastic"
+  #password: "changeme"
+
+#----------------------------- Logstash output --------------------------------
+output.logstash:
+  hosts: ["{{ elk_server }}:{{ logstash_syslog_port }}"]
+  ssl.enabled: false
+  # ssl.certificate_authorities: ["/etc/beat/beat-forwarder.crt"]
+  # ssl.certificate: "/etc/beat/beat-forwarder.crt"
+  # ssl.key: "/etc/beat/beat-forwarder.key"
+
+#================================ Procesors =====================================
+processors:
+  - add_host_metadata: ~
+  - add_cloud_metadata: ~
+
+#================================ Logging =====================================
+#logging.level: debug
+#logging.selectors: ["*"]
+
+#============================== Xpack Monitoring ===============================
+#xpack.monitoring.enabled: false
+#xpack.monitoring.elasticsearch:

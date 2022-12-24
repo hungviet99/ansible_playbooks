@@ -5,6 +5,7 @@
   become_method: sudo
   roles: 
     - {role: hello-world, tags: ['hello-world']}
+    - {role: filebeat, tags: ['filebeat']}
   tasks:
   - name: Hello World!
     shell: echo "Hello world! I am {{account_me}}" > /home/azureuser/hung.txt
