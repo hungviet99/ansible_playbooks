@@ -1,11 +1,17 @@
 ---
-- hosts: nginxsrv
+# - hosts: localhost
+#   gather_facts: no
+#   tasks:
+#     - add_host:
+#         name: "{{ target_host }}"
+#         groups: dynamically_created_hosts
+- hosts: "{{ target_host }}"
   become: yes
-  remote_user: azureuser
+  remote_user: root
   become_method: sudo
   roles: 
-    - {role: hello-world, tags: ['hello-world']}
-    - {role: filebeat, tags: ['filebeat']}
+    # - {role: hello-world, tags: ['hello-world']}
+    # - {role: filebeat, tags: ['filebeat']}
   tasks:
   - name: Hello World!
-    shell: echo "Hello world! I am {{account_me}}" > /home/azureuser/hung.txt
+    shell: echo "Hello world! I am {{account_me}}" > /home/hung.txt
