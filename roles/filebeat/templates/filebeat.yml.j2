@@ -2,7 +2,7 @@ filebeat.inputs:
 - type: log
   enabled: true
   paths:
-    - /var/log/secure
+    - /var/log/auth.log
   #exclude_lines: ['^DBG']
   #include_lines: ['^ERR', '^WARN']
   #exclude_files: ['.gz$']
@@ -16,7 +16,6 @@ setup.template.settings:
   index.number_of_shards: 3
 output.logstash:
   hosts: ["{{ elk_server }}:{{ logstash_syslog_port }}"]
-  ssl.enabled: false
 
 #================================ Procesors =====================================
 processors:
