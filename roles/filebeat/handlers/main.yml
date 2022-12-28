@@ -1,5 +1,4 @@
 ---
-
 - name: restart filebeat
   become: true
   service:
