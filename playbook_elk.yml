@@ -1,11 +1,11 @@
 ---
 - hosts: "{{ target_host }}"
   become: yes
-  remote_user: hungnv124
+  remote_user: root
   become_method: sudo
   roles: 
     # - {role: hello-world, tags: ['hello-world']}
     - {role: filebeat, tags: ['filebeat']}
   tasks:
   - name: Hello World!
-    shell: echo "Hello world! I am {{account_me}}" > /home/hung.txt
+    shell: echo "Hello world! I am {{account_m}}" > /home/hung.txt
