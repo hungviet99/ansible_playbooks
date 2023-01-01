@@ -1,7 +1,7 @@
 ---
 - hosts: "{{ target_host }}"
   become: yes
-  remote_user: root
+  remote_user: hungnv124
   become_method: sudo
   roles: 
     # - {role: hello-world, tags: ['hello-world']}
